@@ -13,7 +13,7 @@ class NeuralNetwork():
         self.params = self.initialization()
         
     def relu(self, x, derivative=False):
-        #relu activation function and relu derivative in one function
+        #relu activation function
         if derivative:
             X = x[:]
             X[X <= 0] = 0
@@ -23,16 +23,19 @@ class NeuralNetwork():
     
     def softmax(self, x):
         #Softmax activation function, softmax is numerically stable with large exponentials
+        #This is the only inplemented function for the output layer. Don't use it for anything else
         exps = np.exp(x - x.max())
         return exps / np.sum(exps, axis=0)
     
     def tanh(self, x, derivative=False):
+        #Tanh activation function.
         tanh = (np.exp(x)-np.exp(-x)) / (np.exp(x)+np.exp(-x))
         if derivative:
             return 1 - np.power(tanh, 2)
         return tanh
     
     def sigmoid(self, x, derivative=False):
+        #Sigmoid activation function
         if derivative:
             return x * (1.0 - x)
         return 1 / (1+ np.exp(-x))
@@ -125,7 +128,7 @@ class NeuralNetwork():
             accuracy = self.compute_accuracy(x_val, y_val)
             print(f'Epoch: {iteration+1}/{self.epochs}, Time spent for epoch: {time.time()-epoch_start_time}s, Total time: {time.time()-start_time} Accuracy: {accuracy}')
 
-
+#Driver code
 image_size = 28*28
 num_classes = 10
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
