@@ -23,7 +23,7 @@ class NeuralNetwork():
     
     def softmax(self, x):
         #Softmax activation function, softmax is numerically stable with large exponentials
-        #This is the only inplemented function for the output layer. Don't use it for anything else
+        #This is the only implemented function for the output layer. Don't use it for anything else
         exps = np.exp(x - x.max())
         return exps / np.sum(exps, axis=0)
     
