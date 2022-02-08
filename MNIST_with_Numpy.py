@@ -76,8 +76,8 @@ class NeuralNetwork():
         return params['A3']
     
     def backward_pass(self, y_train, output):
-        #Backpropagation function, which claculates the updates to the neural network
-        #There may be errors because of the dot and multipy functions on large arrays
+        #Backpropagation function, which calculates the updates to the neural network
+        #There may be errors because of the dot and multiply functions on large arrays
         
         params = self.params
         change_w = {}
